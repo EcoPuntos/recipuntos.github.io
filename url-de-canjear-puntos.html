@@ -4,120 +4,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canje de Puntos</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <title>Canjear Puntos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
-        body {
+       body {
             font-family: 'Poppins', sans-serif;
             background-color: #f5f5f5;
             margin: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding-top: 20px;
         }
 
-        #mis-puntos {
-            font-size: 24px;
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 1em;
+            text-align: center;
+            font-size: 20px;
             font-weight: bold;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        #user-info {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            font-size: 18px;
+        }
+
+        #points {
+            font-size: 24px;
+            margin-left: 10px;
+        }
+
+        #products-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .product {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 200px;
             margin-bottom: 20px;
         }
 
-        .producto {
-            width: 150px;
-            margin: 10px;
-            padding: 10px;
-            background-color: #fff;
+        .product img {
+            width: 100%;
             border-radius: 10px;
-            text-align: center;
+            margin-bottom: 10px;
         }
 
-        .producto img {
-            max-width: 100%;
-            border-radius: 5px;
+        .product-name {
+            font-size: 16px;
+            margin-bottom: 10px;
         }
 
-        .coste-puntos {
-            margin-top: 10px;
-            font-weight: bold;
+        .points-cost {
+            font-size: 14px;
+            margin-bottom: 10px;
         }
 
-        .canjear-btn {
-            margin-top: 10px;
-            padding: 5px 10px;
+        .redeem-btn {
             background-color: #4CAF50;
-            color: #fff;
+            color: white;
+            padding: 8px 16px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
         }
 
-        .mensaje {
-            position: fixed;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
+        .success-message {
+            background-color: #4CAF50;
+            color: white;
             padding: 10px;
             border-radius: 5px;
-            color: #fff;
-            font-weight: bold;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
             display: none;
         }
 
-        .mensaje.success {
-            background-color: #4CAF50;
+        .error-message {
+            background-color: #FF5733;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: none;
         }
 
-        .mensaje.error {
-            background-color: #FF6347;
+        .success-message,
+        .error-message {
+            /* Estilos para los mensajes de éxito y error */
+            display: none;
         }
     </style>
 </head>
 
 <body>
-    <div id="mis-puntos">Mis puntos: <span id="puntos">100</span></div>
-
-    <div class="producto" data-coste="20">
-        <img src="imagen1.jpg" alt="Producto 1">
-        <div class="nombre">Recompensa 1</div>
-        <div class="coste-puntos">Coste: 20 puntos</div>
-        <button class="canjear-btn" onclick="canjear(20)">Canjear</button>
+    <header>Canjear Puntos</header>
+    <div id="user-info">
+        <span>@usuario</span>
+        <span id="points">Mis puntos: 100</span>
     </div>
 
-    <div class="producto" data-coste="30">
-        <img src="imagen2.jpg" alt="Producto 2">
-        <div class="nombre">Recompensa 2</div>
-        <div class="coste-puntos">Coste: 30 puntos</div>
-        <button class="canjear-btn" onclick="canjear(30)">Canjear</button>
+    <div id="products-container">
+        <!-- Producto 1 -->
+        <div class="product" id="product1" data-points="20">
+            <img src="https://i.ebayimg.com/images/g/2pwAAOSwYkVkgz0j/s-l1600.jpg" alt="Producto 1">
+            <div class="product-name">Recompensa 1</div>
+            <div class="points-cost">Costo: 20 puntos</div>
+            <button class="redeem-btn" onclick="redeemReward(20, 'Recompensa 1')">Canjear recompensa</button>
+        </div>
+
+        <!-- Producto 2 -->
+        <div class="product" id="product2" data-points="30">
+            <img src="https://i.ebayimg.com/images/g/tx4AAOSwPwdlKYsv/s-l1600.jpg" alt="Producto 2">
+            <div class="product-name">Recompensa 2</div>
+            <div class="points-cost">Costo: 30 puntos</div>
+            <button class="redeem-btn" onclick="redeemReward(30, 'Recompensa 2')">Canjear recompensa</button>
+        </div>
+
+        <!-- Producto 3 -->
+        <div class="product" id="product3" data-points="15">
+            <img src="https://i.ebayimg.com/images/g/kfwAAOSwI71lrs~K/s-l500.jpg" alt="Producto 3">
+            <div class="product-name">Recompensa 3</div>
+            <div class="points-cost">Costo: 15 puntos</div>
+            <button class="redeem-btn" onclick="redeemReward(15, 'Recompensa 3')">Canjear recompensa</button>
+        </div>
+
+        <!-- Producto 4 -->
+        <div class="product" id="product4" data-points="25">
+            <img src="https://i.ebayimg.com/images/g/YvwAAOSwPG5lyCwQ/s-l1600.jpg" alt="Producto 4">
+            <div class="product-name">Recompensa 4</div>
+            <div class="points-cost">Costo: 25 puntos</div>
+            <button class="redeem-btn" onclick="redeemReward(25, 'Recompensa 4')">Canjear recompensa</button>
+        </div>
     </div>
 
-    <!-- Agrega más productos según sea necesario -->
-
-    <div class="mensaje" id="mensaje-exito">Has canjeado la recompensa!</div>
-    <div class="mensaje" id="mensaje-error">No tienes los puntos suficientes para canjear esta recompensa</div>
+    <div class="success-message" id="success-message">Has canjeado la recompensa!</div>
+    <div class="error-message" id="error-message">No tienes los puntos suficientes para canjear esta recompensa</div>
 
     <script>
-        function canjear(coste) {
-            var puntosActuales = parseInt(document.getElementById('puntos').innerText);
+        function redeemReward(points, rewardName) {
+            var userPoints = 100; // Obtén los puntos del usuario desde tu backend o base de datos
 
-            if (puntosActuales >= coste) {
-                puntosActuales -= coste;
-                document.getElementById('puntos').innerText = puntosActuales;
-
-                // Mostrar mensaje de éxito
-                mostrarMensaje('mensaje-exito');
+            if (userPoints >= points) {
+                // Canjear recompensa
+                userPoints -= points;
+                document.getElementById('points').innerText = 'Mis puntos: ' + userPoints;
+                displayMessage('success-message', 'Has canjeado la recompensa!');
             } else {
-                // Mostrar mensaje de error
-                mostrarMensaje('mensaje-error');
+                // No hay suficientes puntos para canjear
+                displayMessage('error-message', 'No tienes los puntos suficientes para canjear esta recompensa');
             }
         }
 
-        function mostrarMensaje(idMensaje) {
-            var mensaje = document.getElementById(idMensaje);
-            mensaje.style.display = 'block';
-
+        function displayMessage(messageId, message) {
+            // Mostrar mensaje y ocultar después de 3 segundos
+            var messageElement = document.getElementById(messageId);
+            messageElement.style.display = 'block';
             setTimeout(function () {
-                mensaje.style.display = 'none';
+                messageElement.style.display = 'none';
             }, 3000);
         }
     </script>
