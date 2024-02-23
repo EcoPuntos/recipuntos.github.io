@@ -104,9 +104,6 @@
             transform: translateX(-50%);
             display: none;
         }
-
-        .success-message,
-        .error-message {
             /* Estilos para los mensajes de éxito y error */
             display: none;
         }
@@ -123,7 +120,7 @@
     <div id="products-container">
         <!-- Producto 1 -->
         <div class="product" id="product1" data-points="20">
-            <img src="https://i.ebayimg.com/images/g/2pwAAOSwYkVkgz0j/s-l1600.jpg" alt="Producto 1">
+            <img src="imagen1.jpg" alt="Producto 1">
             <div class="product-name">Recompensa 1</div>
             <div class="points-cost">Costo: 20 puntos</div>
             <button class="redeem-btn" onclick="redeemReward(20, 'Recompensa 1')">Canjear recompensa</button>
@@ -131,7 +128,7 @@
 
         <!-- Producto 2 -->
         <div class="product" id="product2" data-points="30">
-            <img src="https://i.ebayimg.com/images/g/tx4AAOSwPwdlKYsv/s-l1600.jpg" alt="Producto 2">
+            <img src="imagen2.jpg" alt="Producto 2">
             <div class="product-name">Recompensa 2</div>
             <div class="points-cost">Costo: 30 puntos</div>
             <button class="redeem-btn" onclick="redeemReward(30, 'Recompensa 2')">Canjear recompensa</button>
@@ -139,7 +136,7 @@
 
         <!-- Producto 3 -->
         <div class="product" id="product3" data-points="15">
-            <img src="https://i.ebayimg.com/images/g/kfwAAOSwI71lrs~K/s-l500.jpg" alt="Producto 3">
+            <img src="imagen3.jpg" alt="Producto 3">
             <div class="product-name">Recompensa 3</div>
             <div class="points-cost">Costo: 15 puntos</div>
             <button class="redeem-btn" onclick="redeemReward(15, 'Recompensa 3')">Canjear recompensa</button>
@@ -147,7 +144,7 @@
 
         <!-- Producto 4 -->
         <div class="product" id="product4" data-points="25">
-            <img src="https://i.ebayimg.com/images/g/YvwAAOSwPG5lyCwQ/s-l1600.jpg" alt="Producto 4">
+            <img src="imagen4.jpg" alt="Producto 4">
             <div class="product-name">Recompensa 4</div>
             <div class="points-cost">Costo: 25 puntos</div>
             <button class="redeem-btn" onclick="redeemReward(25, 'Recompensa 4')">Canjear recompensa</button>
@@ -158,8 +155,10 @@
     <div class="error-message" id="error-message">No tienes los puntos suficientes para canjear esta recompensa</div>
 
     <script>
+        var userPoints = 100; // Inicializar los puntos del usuario
+
         function redeemReward(points, rewardName) {
-            var userPoints = 100; // Obtén los puntos del usuario desde tu backend o base de datos
+            var productElement = document.getElementById(rewardName.toLowerCase().replace(/\s/g, ''));
 
             if (userPoints >= points) {
                 // Canjear recompensa
