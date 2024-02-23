@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio - Tu Marca Recicladora</title>
+    <title>Tu Marca Recicladora</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
     <style>
         body {
@@ -24,9 +25,21 @@
             color: white;
         }
 
+        #header a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
         #greeting {
             text-align: center;
             padding: 20px;
+            font-size: 24px; /* Tamaño más grande */
+        }
+
+        #clock {
+            font-size: 24px;
+            margin-left: 10px;
         }
 
         #container {
@@ -37,15 +50,40 @@
             border-radius: 15px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+
+        #user-info {
+            display: flex;
+            align-items: center;
+        }
+
+        #user-info div {
+            margin: 0 10px;
+        }
+
+        #configuracion {
+            cursor: pointer;
+        }
+
+        #canjear-puntos {
+            cursor: pointer;
+        }
     </style>
 </head>
+
 <body>
     <div id="header">
-        <div>@usuario</div>
-        <div>Mis puntos: 100</div>
+        <div id="user-info">
+            <div>@usuario</div>
+            <div id="puntos">Mis puntos: <strong>100</strong></div>
+            <div id="configuracion">Configuración</div>
+            <div id="canjear-puntos">Canjear puntos</div>
+        </div>
     </div>
 
-    <div id="greeting"></div>
+    <div id="greeting">
+        <span id="saludo"></span>
+        <span id="clock"></span>
+    </div>
 
     <div id="container">
         <h1>Bienvenido a Tu Marca Recicladora</h1>
@@ -54,8 +92,22 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var saludoElement = document.getElementById('greeting');
+        document.addEventListener('DOMContentLoaded', function () {
+            // Configuración del reloj en tiempo real
+            function actualizarReloj() {
+                var fecha = new Date();
+                var hora = fecha.getHours();
+                var minutos = fecha.getMinutes();
+                var segundos = fecha.getSeconds();
+
+                document.getElementById('clock').textContent = `${hora}:${minutos}:${segundos}`;
+            }
+
+            // Actualizar el reloj cada segundo
+            setInterval(actualizarReloj, 1000);
+
+            // Configuración del saludo según la hora del día
+            var saludoElement = document.getElementById('saludo');
             var fecha = new Date();
             var hora = fecha.getHours();
 
@@ -71,6 +123,16 @@
 
             saludoElement.textContent = saludo;
         });
+
+        // Redirección al hacer clic en "Configuración" y "Canjear puntos"
+        document.getElementById('configuracion').addEventListener('click', function () {
+            window.location.href = 'url-de-configuracion.html';
+        });
+
+        document.getElementById('canjear-puntos').addEventListener('click', function () {
+            window.location.href = 'url-de-canjear-puntos.html';
+        });
     </script>
 </body>
+
 </html>
