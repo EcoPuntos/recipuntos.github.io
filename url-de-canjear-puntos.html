@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canje de Puntos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 20px;
+        }
+
+        #mis-puntos {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .producto {
+            width: 150px;
+            margin: 10px;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .producto img {
+            max-width: 100%;
+            border-radius: 5px;
+        }
+
+        .coste-puntos {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .canjear-btn {
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .mensaje {
+            position: fixed;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px;
+            border-radius: 5px;
+            color: #fff;
+            font-weight: bold;
+            display: none;
+        }
+
+        .mensaje.success {
+            background-color: #4CAF50;
+        }
+
+        .mensaje.error {
+            background-color: #FF6347;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="mis-puntos">Mis puntos: <span id="puntos">100</span></div>
+
+    <div class="producto" data-coste="20">
+        <img src="imagen1.jpg" alt="Producto 1">
+        <div class="nombre">Recompensa 1</div>
+        <div class="coste-puntos">Coste: 20 puntos</div>
+        <button class="canjear-btn" onclick="canjear(20)">Canjear</button>
+    </div>
+
+    <div class="producto" data-coste="30">
+        <img src="imagen2.jpg" alt="Producto 2">
+        <div class="nombre">Recompensa 2</div>
+        <div class="coste-puntos">Coste: 30 puntos</div>
+        <button class="canjear-btn" onclick="canjear(30)">Canjear</button>
+    </div>
+
+    <!-- Agrega más productos según sea necesario -->
+
+    <div class="mensaje" id="mensaje-exito">Has canjeado la recompensa!</div>
+    <div class="mensaje" id="mensaje-error">No tienes los puntos suficientes para canjear esta recompensa</div>
+
+    <script>
+        function canjear(coste) {
+            var puntosActuales = parseInt(document.getElementById('puntos').innerText);
+
+            if (puntosActuales >= coste) {
+                puntosActuales -= coste;
+                document.getElementById('puntos').innerText = puntosActuales;
+
+                // Mostrar mensaje de éxito
+                mostrarMensaje('mensaje-exito');
+            } else {
+                // Mostrar mensaje de error
+                mostrarMensaje('mensaje-error');
+            }
+        }
+
+        function mostrarMensaje(idMensaje) {
+            var mensaje = document.getElementById(idMensaje);
+            mensaje.style.display = 'block';
+
+            setTimeout(function () {
+                mensaje.style.display = 'none';
+            }, 3000);
+        }
+    </script>
+</body>
+
+</html>
