@@ -25,10 +25,23 @@
             color: white;
         }
 
-        #header a {
-            color: white;
-            text-decoration: none;
+        #logo {
+            height: 100%; /* Ocupar la misma altura que la barra */
+            margin-right: 20px; /* Separación entre el logo y otros elementos */
+        }
+
+        #user-info {
+            display: flex;
+            align-items: center;
+        }
+
+        #user-info div {
             margin: 0 10px;
+        }
+
+        #configuracion,
+        #canjear-puntos {
+            cursor: pointer;
         }
 
         #greeting {
@@ -50,28 +63,12 @@
             border-radius: 15px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-
-        #user-info {
-            display: flex;
-            align-items: center;
-        }
-
-        #user-info div {
-            margin: 0 10px;
-        }
-
-        #configuracion {
-            cursor: pointer;
-        }
-
-        #canjear-puntos {
-            cursor: pointer;
-        }
     </style>
 </head>
 
 <body>
     <div id="header">
+        <img id="logo" src="logo.png" alt="Logo">
         <div id="user-info">
             <div>@usuario</div>
             <div id="puntos">Mis puntos: <strong>100</strong></div>
