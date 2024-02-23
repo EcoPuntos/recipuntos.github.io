@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - Tu Marca Recicladora</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        #header {
+            background-color: #4CAF50;
+            padding: 10px;
+            border-radius: 0 0 15px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+
+        #greeting {
+            text-align: center;
+            padding: 20px;
+        }
+
+        #container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <div>@usuario</div>
+        <div>Mis puntos: 100</div>
+    </div>
+
+    <div id="greeting"></div>
+
+    <div id="container">
+        <h1>Bienvenido a Tu Marca Recicladora</h1>
+        <p>Descubre cómo puedes ganar recompensas por reciclar con nosotros.</p>
+        <!-- Otros elementos y contenido relacionado con la marca -->
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var saludoElement = document.getElementById('greeting');
+            var fecha = new Date();
+            var hora = fecha.getHours();
+
+            var saludo;
+
+            if (hora < 12) {
+                saludo = 'Buenos días';
+            } else if (hora < 18) {
+                saludo = 'Buenas tardes';
+            } else {
+                saludo = 'Buenas noches';
+            }
+
+            saludoElement.textContent = saludo;
+        });
+    </script>
+</body>
+</html>
