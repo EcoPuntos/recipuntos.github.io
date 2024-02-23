@@ -12,38 +12,40 @@
 
 <body>
 
+    <div class="wrapper">
+        <form id="loginForm">
+            <h1>Inicio Sesión</h1>
+            <div class="input-box">
+                <input type="text" placeholder="Usuario" required>
+                <i class="bx bxs-user"></i>
+            </div>
+            <div class="input-box">
+                <input type="password" placeholder="Contraseña" required>
+                <i class="bx bxs-lock-alt"></i>
+            </div>
+            <div class="remember-forgot">
+                <label><input type="checkbox"> Recuérdame</label>
+                <a href="#">Olvidé la contraseña</a>
+            </div>
+            <button type="submit" class="btn">Entrar</button>
+        </form>
 
-	<div class="wrapper">
-		<form action="">
-			<h1>Inicio Sesión</h1>
-			<div class="input-box">
-				<input type="text" placeholder="Usuario"
-				required>
-				<i class="bx bxs-user"></i>
-			</div>
-			<div class="input-box">
-				<input type="password" placeholder="Contraseña"
-				required>
-				<i class="bx bxs-lock-alt"></i>
-			</div>
-			<div class="remember-forgot">
-				<label><input type="checkbox"> Recuerdame</label>
-				<a href="#">Olvide la contraseña</a>
-			</div>
-			<a href="https://ecopuntos.github.io/recipuntos.github.io/pagina-inicio.html" class="btn">
-                         <button type="submit">Entrar</button>
+        <div class="register-link">
+            <p>No tienes una cuenta? <a href="#">Registrarme</a></p>
+        </div>
+    </div>
 
-			<div class="register-link">
-				<p>No tienes una cuenta? <a href="#">Registrarme</a></p>
-			</form>
-		</div>
-<script>
-	window.onload = function() {
-            // Verificar si el usuario está iniciando sesión
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function (event) {
+            // Evitar que el formulario se envíe normalmente
+            event.preventDefault();
+
             // Aquí puedes poner tu lógica de autenticación si es necesario
 
             // Redirigir a la página de inicio si está iniciando sesión
-            window.location.href = "pagina-inicio.html";</script>    
+            window.location.href = "https://ecopuntos.github.io/recipuntos.github.io/pagina-inicio.html";
+        });
+    </script>
 
 </body>
 
