@@ -136,18 +136,28 @@
             window.location.href = 'https://ecopuntos.github.io/recipuntos.github.io/url-de-canjear-puntos.html';
         });
 
-        // Agregar la puntuación inicial y configuración para WebSocket (puerto serie virtual)
-        const puntosElement = document.getElementById('puntos');
-        let puntos = 0;
-        puntosElement.innerHTML = 'Mis puntos: <strong>' + puntos + '</strong>';
-
-        const socket = new WebSocket('ws://localhost:8080'); // Cambiar el puerto si es necesario
-
-        // Manejar la recepción de datos desde el puerto serie virtual
-        socket.addEventListener('message', function (event) {
-            var data = JSON.parse(event.data);
-            puntos += data.puntos;
+        document.addEventListener('DOMContentLoaded', function () {
+            var puntosElement = document.getElementById('puntos');
+            var puntos = 0;
             puntosElement.innerHTML = 'Mis puntos: <strong>' + puntos + '</strong>';
+
+            const socket = new WebSocket('ws://localhost:8080'); // Cambiar el puerto si es necesario
+
+            socket.addEventListener('message', function (event) {
+                var data = JSON.parse(event.data);
+                puntos += data.puntos;
+                puntosElement.innerHTML = 'Mis puntos: <strong>' + puntos + '</strong>';
+            });
+
+            // Agregamos la función para lanzar el objeto (simulación)
+            function lanzarObjeto() {
+                // Puedes enviar un mensaje al servidor cuando detectes un objeto
+                socket.send(JSON.stringify({ puntos: 1 }));
+            }
+
+            // Esta es una simulación, debes conectar esto a la lógica del sensor ultrasónico
+            // Lanzamos un objeto cada 2 segundos
+            setInterval(lanzarObjeto, 2000);
     </script>
 </body>
 
